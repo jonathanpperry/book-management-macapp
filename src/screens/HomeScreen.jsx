@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import SearchBar from '../components/SearchBar';
+import axios from 'axios';
 
 const HomeScreen = () => {
+  const [query, setQuery] = useState('');
+
+  const searchBooks = async () => {
+    const response = await axios.get(
+      'https://www.googleapis.com/books/v1/volumes?',
+      {
+        params: {
+          q: query,
+        },
+      },
+    );
+
+    return response.data.items;
+  };
+
   return (
     <View style={styles.container}>
-      <SearchBar />
+      <SearchBar value={query} setValue={setQuery} />
     </View>
   );
 };

@@ -1,13 +1,22 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 
-const SearchBar = () => {
+interface ISearchBar {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchBar = (props: ISearchBar) => {
+  const {value, setValue} = props;
+
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search Books"
         placeholderTextColor="#000"
+        value={value}
+        onChangeText={setValue}
       />
       <Pressable style={styles.btn}>
         <Text style={styles.btnText}>Search</Text>
