@@ -3,6 +3,7 @@ import HomeScreen from './screens/HomeScreen';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import BookScreen from './screens/BookScreen';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Book" component={BookScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

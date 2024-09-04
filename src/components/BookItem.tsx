@@ -1,15 +1,25 @@
-import {View, StyleSheet, Image, Text} from 'react-native';
+import {View, StyleSheet, Image, Text, Pressable} from 'react-native';
 import React from 'react';
 import {IBook} from '../types';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 const BookItem = (props: IBook) => {
   const {id, volumeInfo} = props;
 
   const {imageLinks, title, authors, averageRating, pageCount, description} =
     volumeInfo;
+
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate('Book', {
+          bookId: id,
+        })
+      }>
       <Image
         source={{
           uri:
@@ -37,7 +47,7 @@ const BookItem = (props: IBook) => {
           {description}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
