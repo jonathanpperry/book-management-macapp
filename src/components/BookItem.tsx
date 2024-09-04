@@ -1,11 +1,13 @@
 import {View, StyleSheet, Image, Text} from 'react-native';
 import React from 'react';
 import {IBook} from '../types';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const BookItem = (props: IBook) => {
   const {id, volumeInfo} = props;
 
-  const {imageLinks, title, authors, pageCount, description} = volumeInfo;
+  const {imageLinks, title, authors, averageRating, pageCount, description} =
+    volumeInfo;
   return (
     <View style={styles.container}>
       <Image
@@ -21,6 +23,13 @@ const BookItem = (props: IBook) => {
         <Text style={styles.title}>{title}</Text>
 
         <Text style={styles.authors}>{authors?.join(', ')}</Text>
+
+        {averageRating && (
+          <View style={styles.ratingContainer}>
+            <Icon name="star" color="yellow" size={20} />
+            <Text style={styles.rating}>{averageRating}</Text>
+          </View>
+        )}
 
         <Text style={styles.pages}>{pageCount} pages</Text>
 
@@ -57,6 +66,14 @@ const styles = StyleSheet.create({
   authors: {
     fontSize: 16,
     color: '#4ecdc4',
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  rating: {
+    fontSize: 15,
   },
   pages: {
     fontSize: 15,

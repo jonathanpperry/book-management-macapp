@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Icon} from 'react-native-vector-icons/Feather';
 
 interface ISearchBar {
   value: string;
@@ -21,6 +22,7 @@ const SearchBar = (props: ISearchBar) => {
         onSubmitEditing={onPress}
       />
       <Pressable style={styles.btn} onPress={onPress}>
+        <Icon name="search" color="#fff" size={20} />
         <Text style={styles.btnText}>Search</Text>
       </Pressable>
     </View>
@@ -49,6 +51,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
+    flexDirection: 'row',
+    gap: 5,
   },
   btnText: {
     fontSize: 15,
