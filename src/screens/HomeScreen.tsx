@@ -10,7 +10,6 @@ const HomeScreen = () => {
 
   const {data, refetch} = useSearch(query);
 
-  console.log(data);
   return (
     <View style={styles.container}>
       <SearchBar value={query} setValue={setQuery} onPress={refetch} />
@@ -19,7 +18,6 @@ const HomeScreen = () => {
         data={data}
         renderItem={({item}) => <BookItem {...item} />}
         keyExtractor={item => item.id}
-        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{
           padding: 10,
           gap: 5,
