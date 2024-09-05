@@ -9,5 +9,9 @@ export interface IBook {
       thumbnail: string;
     };
     pageCount: number;
+    categories: string[];
+    publisher: string;
+    publishedDate: string;
+    previewLink: string;
   };
 }
