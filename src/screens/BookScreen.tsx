@@ -16,6 +16,7 @@ import BookItem from '../components/BookItem';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import {StackParamList} from '../types';
+import SelectBookshelf from '../components/SelectBookshelf';
 // import RenderHtml from 'react-native-render-html';
 
 type BookScreenRouteProp = RouteProp<StackParamList, 'Book'>;
@@ -42,7 +43,11 @@ const BookScreen = () => {
         padding: 15,
         gap: 15,
       }}>
-      <GoBack />
+      <View style={styles.header}>
+        <GoBack />
+        <SelectBookshelf />
+      </View>
+
       <BookItem {...data} isDescription={false} isPressable={false} />
 
       <View style={styles.categories}>
@@ -63,6 +68,8 @@ const BookScreen = () => {
         <Icon name="external-link" color="#4ecdc4" size={20} />
       </Pressable>
 
+      <SelectBookshelf />
+
       {/* Render HTML of description */}
       {/* <RenderHtml
         contentWidth={width}
@@ -80,6 +87,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#292f36',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   categories: {
     flexDirection: 'row',
