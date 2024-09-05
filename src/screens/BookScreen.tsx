@@ -1,4 +1,4 @@
-import {useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
   ActivityIndicator,
@@ -15,13 +15,16 @@ import GoBack from '../components/GoBack';
 import BookItem from '../components/BookItem';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
-import RenderHTML from 'react-native-render-html';
+import {StackParamList} from '../types';
+// import RenderHtml from 'react-native-render-html';
+
+type BookScreenRouteProp = RouteProp<StackParamList, 'Book'>;
 
 const BookScreen = () => {
-  const route = useRoute();
-  const {width} = useWindowDimensions();
+  const route = useRoute<BookScreenRouteProp>();
+  // const {width} = useWindowDimensions();
 
-  const {bookId} = route?.params;
+  const {bookId} = route.params;
 
   const {data, isFetching, error} = useBook(bookId);
 
@@ -61,12 +64,12 @@ const BookScreen = () => {
       </Pressable>
 
       {/* Render HTML of description */}
-      <RenderHTML
+      {/* <RenderHtml
         contentWidth={width}
         source={{
           html: description,
         }}
-      />
+      /> */}
     </ScrollView>
   );
 };
