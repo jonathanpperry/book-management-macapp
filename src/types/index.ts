@@ -21,6 +21,7 @@ export type StackParamList = {
   Book: {
     bookId: string;
   };
+  Bookshelves: undefined;
 };
 
 export enum BookShelves {
