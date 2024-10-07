@@ -24,7 +24,7 @@ export type StackParamList = {
   Bookshelves: undefined;
 };
 
-export enum BookShelves {
+export enum Bookshelves {
   WantToRead,
   Read,
   CurrentlyReading,

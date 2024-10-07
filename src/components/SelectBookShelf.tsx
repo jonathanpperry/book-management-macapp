@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {BookShelves} from '../types';
+import {Bookshelves} from '../types';
 import Icon from 'react-native-vector-icons/Entypo';
 
 const TickIcon = () => <Icon name="check" color="#4ecdc4" size={20} />;
 
+export const BOOK_SHELVES = [
+  {label: 'Want to Read', value: Bookshelves.WantToRead},
+  {label: 'Read', value: Bookshelves.Read},
+  {label: 'Currently Reading', value: Bookshelves.CurrentlyReading},
+];
+
 const SelectBookshelf = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Want to Read', value: BookShelves.WantToRead},
-    {label: 'Read', value: BookShelves.Read},
-    {label: 'Currently Reading', value: BookShelves.CurrentlyReading},
-  ]);
+  const [items, setItems] = useState(BOOK_SHELVES);
 
   return (
     <DropDownPicker
