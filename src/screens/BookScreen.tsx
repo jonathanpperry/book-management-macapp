@@ -2,6 +2,7 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
   ActivityIndicator,
+  Button,
   Linking,
   Pressable,
   ScrollView,
@@ -17,13 +18,16 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import {StackParamList} from '../types';
 import SelectBookshelf from '../components/SelectBookshelf';
-// import RenderHtml from 'react-native-render-html';
+import useStore from '../store';
+import RenderHtml from 'react-native-render-html';
 
 type BookScreenRouteProp = RouteProp<StackParamList, 'Book'>;
 
 const BookScreen = () => {
   const route = useRoute<BookScreenRouteProp>();
-  // const {width} = useWindowDimensions();
+  const {width} = useWindowDimensions();
+
+  // const {inc} = useStore();
 
   const {bookId} = route.params;
 
@@ -45,7 +49,7 @@ const BookScreen = () => {
       }}>
       <View style={styles.header}>
         <GoBack />
-        <SelectBookshelf />
+        <SelectBookshelf bookId={bookId} />
       </View>
 
       <BookItem {...data} isDescription={false} isPressable={false} />
@@ -68,15 +72,13 @@ const BookScreen = () => {
         <Icon name="external-link" color="#4ecdc4" size={20} />
       </Pressable>
 
-      <SelectBookshelf />
-
       {/* Render HTML of description */}
-      {/* <RenderHtml
+      <RenderHtml
         contentWidth={width}
         source={{
           html: description,
         }}
-      /> */}
+      />
     </ScrollView>
   );
 };
