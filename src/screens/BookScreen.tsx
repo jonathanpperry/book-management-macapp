@@ -2,7 +2,6 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
   ActivityIndicator,
-  Button,
   Linking,
   Pressable,
   ScrollView,
@@ -18,8 +17,8 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import {StackParamList} from '../types';
 import SelectBookshelf from '../components/SelectBookshelf';
-import useStore from '../store';
 import RenderHtml from 'react-native-render-html';
+import BookSummary from '../components/BookSummary';
 
 type BookScreenRouteProp = RouteProp<StackParamList, 'Book'>;
 
@@ -78,6 +77,11 @@ const BookScreen = () => {
         source={{
           html: description,
         }}
+      />
+
+      <BookSummary
+        title={data!.volumeInfo.title}
+        authors={data!.volumeInfo.authors}
       />
     </ScrollView>
   );
