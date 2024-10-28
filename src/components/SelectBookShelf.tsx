@@ -19,7 +19,7 @@ interface ISelectBookshelf {
 
 const SelectBookshelf = (props: ISelectBookshelf) => {
   const {bookId} = props;
-  const {addBook, books} = useBookshelves();
+  const {addBook, updateBook, books} = useBookshelves();
   const book = books.find(item => item.bookId === bookId);
 
   const [open, setOpen] = useState(false);
@@ -35,7 +35,11 @@ const SelectBookshelf = (props: ISelectBookshelf) => {
       items={items}
       setOpen={setOpen}
       setValue={setValue}
-      onChangeValue={bookshelfId => addBook(bookId, bookshelfId as Bookshelves)}
+      onChangeValue={bookshelfId =>
+        book
+          ? updateBook(bookId, bookshelfId as Bookshelves)
+          : addBook(bookId, bookshelfId as Bookshelves)
+      }
       setItems={setItems}
       listMode="SCROLLVIEW"
       placeholder="Select Bookshelf"
