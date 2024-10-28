@@ -5,6 +5,7 @@ type Store = {
   books: IBookshelf[];
   addBook: (bookId: string, bookshelfId: Bookshelves) => void;
   updateBook: (bookId: string, bookshelfId: Bookshelves) => void;
+  removeBook: (bookId: string) => void;
 };
 
 const useBookshelves = create<Store>()(set => ({
@@ -19,6 +20,7 @@ const useBookshelves = create<Store>()(set => ({
         },
       ],
     })),
+
   updateBook: (bookId, bookshelfId) =>
     set(state => ({
       books: state.books.map(book => {
@@ -29,6 +31,11 @@ const useBookshelves = create<Store>()(set => ({
           };
         return book;
       }),
+    })),
+
+  removeBook: bookId =>
+    set(state => ({
+      books: state.books.filter(book => book.bookId !== bookId),
     })),
 }));
 
